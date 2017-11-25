@@ -1,13 +1,13 @@
 import React from 'react'
 import {Provider  as MobXProvider, observer} from 'mobx-react'
+import {LANDSCAPE, PORTRAIT} from "../Constants";
+import ImgurCarousel from "./components/ImgurCarousel";
+import Store from "../Store";
 import {Text, View} from "react-native";
-import {LANDSCAPE, PORTRAIT} from "./Constants";
-import Store from './Store'
-import {styles} from "./src/styles"
-import ImgurCarousel from "./src/components/ImgurCarousel";
+import {styles} from './styles'
 
 @observer
-export default class App extends React.Component {
+class ImgurApp extends React.Component {
 
   onLayout(event) {
     const { width, height } = event.nativeEvent.layout;
@@ -21,9 +21,11 @@ export default class App extends React.Component {
         <MobXProvider store={Store}>
           <View style={styles.container}
                 onLayout={this.onLayout.bind(this)}>
-            <Text>Hello fffgdfvcx</Text>
+            <ImgurCarousel/>
           </View>
         </MobXProvider>
     );
   }
 }
+
+export default ImgurApp
