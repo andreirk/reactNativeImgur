@@ -30,4 +30,10 @@ export const styles = StyleSheet.create({
     color: 'white',
     padding: 10
   },
+  header: {
+    textAlign: 'center',
+    backgroundColor: 'rgba(100, 100, 100, 0.5)',
+    color: 'white',
+    padding: 10
+  },
 });

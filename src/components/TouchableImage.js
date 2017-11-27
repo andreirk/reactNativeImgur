@@ -35,20 +35,28 @@ class TouchableImage extends Component {
     });
   }
 
+  get caption() {
+    let { caption, image } = this.props;
+    return image.title || image.description || caption;
+  }
+
   render() {
-    const { image, orientation } = this.props;
+    const { image, orientation, height  } = this.props;
 
     const uri = image.link.replace('http://', 'https://');
 
-    console.log(toJS(image));
+    console.log('----- to JS IMAGE',toJS(image));
 
     return (
         <TouchableHighlight onPress={this.onPress.bind(this)}
                             style={styles.fullscreen}>
           <Image source={{uri: uri}}
-                 style={[styles.backgroundImage, styles[orientation.toLowerCase()]]}
+                 style={[styles.backgroundImage,
+                         styles[orientation.toLowerCase()],
+                         {height: height || null}
+                 ]}
                  onLayout={this.onImageLayout.bind(this)}>
-            <Text style={styles.imageLabel}>{image.title}</Text>
+            <Text style={styles.imageLabel}>{this.caption}</Text>
           </Image>
         </TouchableHighlight>
     );

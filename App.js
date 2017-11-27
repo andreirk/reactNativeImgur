@@ -9,11 +9,18 @@ import ImgurCarousel from "./src/components/ImgurCarousel";
 @observer
 export default class App extends React.Component {
 
+  componentWillMount() {
+    Store.fetchImages();
+  }
+
   onLayout(event) {
     const { width, height } = event.nativeEvent.layout;
     const orientation = ( width > height ) ? LANDSCAPE : PORTRAIT;
 
     Store.changeOrientation(orientation);
+    Store.updateScreenSize(width, height);
+
+    // Store.changeImage();
   }
 
   render() {
@@ -21,9 +28,12 @@ export default class App extends React.Component {
         <MobXProvider store={Store}>
           <View style={styles.container}
                 onLayout={this.onLayout.bind(this)}>
-            <Text>Hello fffgdfvcx</Text>
+            <ImgurCarousel/>
+
           </View>
         </MobXProvider>
     );
   }
 }
+
+
